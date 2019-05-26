@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  chrome:
+   build: .
+   environment:
+     - CHROME_EXTENSION=/dist
+     - START_URL="file:///home/chrome/start.html?direct=1&savelog=mylog"
+   volumes:
+     - ../Kantu/dist:/dist
+     - ./logs:/home/chrome/Downloads
+     - ./start.html:/home/chrome/start.html
+     - ./supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+   ports:
+     - "5900:5900"
+     - "9222:9222"
